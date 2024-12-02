@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: app_container
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app
+      - ./data:/app/data # Монтируем каталог с SQLite в контейнер
+    environment:
+      - FLASK_ENV=development
+    depends_on:
+      - db
+
+  db:
+    image: nouchka/sqlite3
+    container_name: db_container
+    volumes:
+      - ./data:/data
+    environment:
+      - SQLITE_DB_PATH=/data/mydatabase.db

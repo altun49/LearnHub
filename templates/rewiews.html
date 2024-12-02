@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Отзывы для курса: {{ course.title }}</h2>
+
+        <h3>Добавить отзыв</h3>
+        <form method="POST">
+            <div class="form-group">
+                <textarea class="form-control" name="content" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+        </form>
+
+        <h3 class="mt-4">Отзывы:</h3>
+        <ul class="list-group">
+            {% for review in reviews %}
+            <li class="list-group-item">{{ review.content }} <strong>- {{ review.user.username }}</strong></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

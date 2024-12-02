@@ -1,0 +1,27 @@
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environments
+.venv/
+env/
+
+# Секретные файлы и переменные окружения
+.env
+.flaskenv
+
+# Логи
+*.log
+
+# Файлы базы данных
+*.sqlite
+*.db
+
+# Папки для временных файлов
+tmp/
+temp/
+
+# Директории, содержащие медиафайлы
+static/uploads/
