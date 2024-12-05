@@ -1,23 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/free-vector/abstract-realistic-technology-particle-background_52683-33064.jpg?t=st=1733421464~exp=1733425064~hmac=e195819be7c37c3aaccedb94997c919712d8b66762cf48d6dea95769a033f035&w=996'); /* Фоновое изображение */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: #34495e;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            margin: 0 15px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            color: #34495e;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Регистрация</h2>
-        <form method="POST">
+
+    <!-- Навигационная панель -->
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Главная</a>
+        <a href="{{ url_for('register') }}">Регистрация</a>
+        <a href="{{ url_for('login') }}">Войти</a>
+    </div>
+
+    <!-- Контейнер с формой регистрации -->
+    <div class="container">
+        <h1>Регистрация</h1>
+
+        <!-- Форма регистрации -->
+        <form action="{{ url_for('register') }}" method="POST">
+            <!-- Поле для имени пользователя -->
             <div class="form-group">
                 <label for="username">Имя пользователя</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input type="text" id="username" name="username" required>
             </div>
+
+            <!-- Поле для email -->
+            <div class="form-group">
+                <label for="email">Электронная почта</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Поле для пароля -->
             <div class="form-group">
                 <label for="password">Пароль</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+
+            <!-- Подтверждение пароля -->
+            <div class="form-group">
+                <label for="confirm_password">Подтвердите пароль</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+
+            <!-- Кнопка регистрации -->
+            <div class="form-group">
+                <input type="submit" value="Зарегистрироваться">
+            </div>
         </form>
-        <a href="{{ url_for('login') }}">Уже есть аккаунт? Войдите</a>
+
+        <!-- Ссылка на страницу входа -->
+        <div class="form-footer">
+            <p>Уже есть аккаунт? <a href="{{ url_for('login') }}">Войти</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

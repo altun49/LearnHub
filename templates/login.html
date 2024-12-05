@@ -1,26 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        /* Основные стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative; /* Для корректной работы ::before */
+            background-image: url('https://img.freepik.com/free-vector/abstract-realistic-technology-particle-background_52683-33064.jpg?t=st=1733421464~exp=1733425064~hmac=e195819be7c37c3aaccedb94997c919712d8b66762cf48d6dea95769a033f035&w=996'); /* Замените на путь к вашему изображению */
+            background-size: cover; /* Растянуть фон на весь экран */
+            background-repeat: no-repeat; /* Не повторять фон */
+            background-position: center; /* Центрировать фон */
+            color: #ffffff; /* Белый текст для контраста */
+            min-height: 100vh; /* Минимальная высота для корректного отображения */
+            display: flex; /* Используем flexbox для выравнивания */
+            justify-content: center; /* Горизонтальное выравнивание */
+            align-items: center; /* Вертикальное выравнивание */
+            height: 100vh; /* Обеспечиваем, что высота будет 100% от видимой области */
+            margin: 0;
+        }
+
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #34495e;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            color: #34495e;
+        }
+
+        .form-group input {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .form-footer {
+            display: flex; /* Используем flexbox для выравнивания */
+            justify-content: flex-start; /* Выравниваем по левому краю */
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        /* Навигационная панель */
+    .navbar {
+        background-color: #34495e;
+        color: white;
+        padding: 15px 20px;
+        display: flex; /* Используем Flexbox */
+        justify-content: center; /* Выравнивание по центру */
+        gap: 20px; /* Промежутки между ссылками */
+        position: absolute; /* Чтобы navbar не занимал лишнего места */
+        width: 100%; /* Занимает всю ширину экрана */
+        top: 0; /* Ставим наверх */
+        left: 0; /* Для корректного позиционирования */
+        z-index: 1000; /* Чтобы панель была сверху других элементов */
+    }
+
+    /* Ссылки в навигации */
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 5px 10px; /* Немного отступа */
+    }
+
+    .navbar a:hover {
+        text-decoration: underline;
+    }
+
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Вход</h2>
-        <form method="POST">
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Главная</a>
+        <!--a href="{{ url_for('login') }}">Войти</a-->
+        <a href="{{ url_for('register') }}">Регистрация</a>
+        <a href="{{ url_for('courses') }}">Курсы</a> <!-- Добавлена ссылка на курсы -->
+    </div>
+
+    <div class="login-container">
+        <h2>Вход в аккаунт</h2>
+
+        <!-- Форма входа -->
+        <form action="{{ url_for('login') }}" method="POST">
+            <!-- Поле для имени пользователя -->
             <div class="form-group">
                 <label for="username">Имя пользователя</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input type="text" id="username" name="username" required>
             </div>
+
+            <!-- Поле для пароля -->
             <div class="form-group">
                 <label for="password">Пароль</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" id="password" name="password" required>
             </div>
+
+            <!-- Кнопка входа -->
             <button type="submit" class="btn btn-primary">Войти</button>
         </form>
-        <a href="{{ url_for('register') }}">Нет аккаунта? Зарегистрируйтесь</a>
+
+        <!-- Ссылка на регистрацию -->
+        <div class="form-footer">
+            <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a></p>
+        </div>
     </div>
+
 </body>
 </html>

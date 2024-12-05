@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курсы по дизайну игр</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #2c3e50;
+            margin: 0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            height: 100vh; /* Новый стиль для растяжения фона на весь экран */
+        }
+
+        /* Навигационная панель */
+        .navbar {
+            background-color: #34495e;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 1.1rem;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Основное содержание */
+        .hero-section {
+            background: url('https://img.freepik.com/free-vector/abstract-realistic-technology-particle-background_52683-33064.jpg?t=st=1733421464~exp=1733425064~hmac=e195819be7c37c3aaccedb94997c919712d8b66762cf48d6dea95769a033f035&w=996');
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            height: 100vh; /* Убедитесь, что геро-секция покрывает весь экран */
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        /* Курсы */
+        .courses-overlay {
+            display: none; /* скрываем по умолчанию */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* полупрозрачный фон */
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .courses-header {
+            background: url('https://img.freepik.com/free-vector/abstract-realistic-technology-particle-background_52683-33064.jpg?t=st=1733421464~exp=1733425064~hmac=e195819be7c37c3aaccedb94997c919712d8b66762cf48d6dea95769a033f035&w=996');
+            background-size: cover;
+            padding: 60px 0;
+            width: 80%;
+            max-width: 900px;
+            text-align: center;
+            border-radius: 10px;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            z-index: 1001;
+        }
+
+        .courses-header.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .courses-header h2 {
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .courses-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .course-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card h4 {
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .course-card a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .course-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Социальные сети */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-links i {
+            font-size: 1.5rem;
+            color: #3498db;
+            cursor: pointer;
+        }
+
+        .social-links i:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Главная</a>
+        <a href="/login">Войти</a>
+        <a href="/register">Регистрация</a>
+    </div>
+
+    <!-- Герой-секция -->
+    <div class="hero-section">
+        <h1>Обучение в сфере дизайна игр</h1>
+        <p>Начни свою карьеру в игровой индустрии с нашими курсами по дизайну и разработке игр.</p>
+        <a href="javascript:void(0);" class="btn-primary" id="show-courses">Посмотреть курсы</a>
+    </div>
+
+    <!-- Модальное окно с курсами -->
+    <div class="courses-overlay" id="courses-overlay">
+        <div class="courses-header" id="courses">
+            <h2>Популярные курсы</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <h4>Основы дизайна игр</h4>
+                    <p>Изучите основы разработки и дизайна игр. Подходит для начинающих.</p>
+                    <a href="#">Подробнее</a>
+                </div>
+                <div class="course-card">
+                    <h4>Продвинутый курс по 3D моделированию</h4>
+                    <p>Углубленное изучение 3D моделирования и создания виртуальных миров.</p>
+                    <a href="#">Подробнее</a>
+                </div>
+                <div class="course-card">
+                    <h4>Разработка персонажей для игр</h4>
+                    <p>Изучите создание персонажей для игр, включая моделирование и текстурирование.</p>
+                    <a href="#">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Социальные сети -->
+    <div class="social-links">
+        <i class="fab fa-telegram-plane"></i>
+        <i class="fab fa-vk"></i>
+    </div>
+
+    <script>
+        document.getElementById('show-courses').addEventListener('click', function() {
+            const coursesHeader = document.getElementById('courses');
+            const coursesOverlay = document.getElementById('courses-overlay');
+
+            // Показываем модальное окно и курсы
+            coursesOverlay.style.display = 'flex';
+            setTimeout(() => {
+                coursesHeader.classList.add('show');
+            }, 10); // Немного задержим анимацию для плавности
+        });
+
+        // Закрыть модальное окно по клику вне области курса
+        document.getElementById('courses-overlay').addEventListener('click', function(event) {
+            if (event.target === this) {
+                const coursesHeader = document.getElementById('courses');
+                coursesHeader.classList.remove('show');
+                setTimeout(() => {
+                    coursesOverlay.style.display = 'none';
+                }, 300); // Задержка для плавного скрытия
+            }
+        });
+    </script>
+
+    <!-- Подключение FontAwesome для иконок -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
